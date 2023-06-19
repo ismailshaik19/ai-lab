@@ -46,3 +46,30 @@ def Missionaries_and_Cannibals_BFS(r, g, m, c):
     return graph
 
 graph = Missionaries_and_Cannibals_BFS(root, goal, M, C)
+
+
+
+
+
+
+
+graph
+
+
+
+
+
+
+def path(root, goal, g):
+    x = str(goal)
+    p = [x]
+    while(x!=str(root)):
+        for i in g.keys():
+            l = [str(j) for j in g[i]]
+            if x in l:
+                p.insert(0, i)
+                break
+        x = p[0]
+    return p
+
+path(root, goal, graph)
