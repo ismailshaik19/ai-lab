@@ -1,0 +1,37 @@
+class Dfid:
+    def __init__(self,graph,src,goal):
+        self.goal=goal
+        self.graph=graph
+        self.src=src
+    def dfid(self):
+        found=False
+        depth=1
+        while(found==False):
+            print(f"iteration  {depth}")
+            print(self.src,end=" ")
+            if self.dfs(self.src,depth-1):
+                found=True
+            depth+=1
+            print()
+    def dfs(self,src,depth):
+        if src==self.goal:
+            print()
+            print("succesfully reached goal node")
+            return True
+        if depth<=0:
+            return False
+        for i in self.graph[src]:
+            print(i,end=" ")
+            if self.dfs(i,depth-1):
+                return True
+        return False
+if __name__=="__main__":
+    lst=[i.upper() for i in input("enter nodes with space sepearted").split(" ")]
+    graph={k:[] for k in lst}
+    for i in graph.keys():
+        graph[i]=[x.upper() for x in input(f"enter child nodes of  {i} - ").split(" ")]
+    print(graph)
+    src=input("enter source node").upper()
+    goal=input("enter goal node").upper()
+    kalyan=Dfid(graph,src,goal)
+    kalyan.dfid() 
