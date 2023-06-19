@@ -1,0 +1,34 @@
+#BFS
+from queue import Queue
+graph = { "a" : ["c"],
+          "b" : ["c", "e"],
+          "c" : ["a", "b", "d", "e"],
+          "d" : ["c"],
+          "e" : ["c", "b"],
+          "f" : []
+        } 
+q=Queue(maxsize=10)
+visited=[]
+def bfs(graph,node,goal):
+    q.put(node)
+    if goal_test(node,goal):
+        return node
+    while(True):
+        if (q.empty() == True):
+            return 'failure'
+        n=q.get()
+        visited.append(n)
+        for s in graph[n]:
+            if s not in visited:
+                if goal_test(s,goal):
+                    visited.append(s)
+                    return visited
+                q.put(s)
+def goal_test(node,goal):
+    if node == goal:
+        return True
+    else:
+        return False
+init_state=input("enter intitial state : ")
+goal_state=input("enter goal test : ")
+print(bfs(graph,init_state,goal_state))
